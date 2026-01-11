@@ -5,6 +5,7 @@ import LandingView from './views/Landing';
 import ClientDashboard from './views/ClientDashboard';
 import OpsDashboard from './views/OpsDashboard';
 import PlanningDocs from './views/PlanningDocs';
+import SecurityPlansView from './views/SecurityPlans';
 import CoverageView from './app/coverage/page';
 import WorkForUsPage from './app/work-for-us/page';
 import ApplyPage from './app/work-for-us/apply/page';
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<LandingView />} />
+            <Route path="/security-plans" element={<SecurityPlansView />} />
             <Route path="/client/*" element={<ClientDashboard />} />
             <Route path="/ops/*" element={<OpsDashboard />} />
             <Route path="/ops/recruitment" element={<OpsRecruitmentDashboard />} />
@@ -41,7 +43,7 @@ const Navigation: React.FC<{ userRole: UserRole, setUserRole: (r: UserRole) => v
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const isActive = (path: string) => location.pathname.startsWith(path);
+  const isActive = (path: string) => location.pathname === path;
 
   const handleRoleChange = (role: UserRole) => {
     setUserRole(role);
@@ -65,9 +67,9 @@ const Navigation: React.FC<{ userRole: UserRole, setUserRole: (r: UserRole) => v
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
+            <Link to="/security-plans" className={`text-sm font-medium ${isActive('/security-plans') ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-900'}`}>Plans</Link>
             <Link to="/coverage" className={`text-sm font-medium ${isActive('/coverage') ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-900'}`}>Coverage</Link>
             <Link to="/work-for-us" className={`text-sm font-medium ${isActive('/work-for-us') ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-900'}`}>Work for Us</Link>
-            <Link to="/docs" className={`text-sm font-medium ${isActive('/docs') ? 'text-indigo-600' : 'text-gray-500 hover:text-gray-900'}`}>Planning Docs</Link>
             
             <div className="h-6 w-px bg-gray-200"></div>
 
@@ -103,9 +105,9 @@ const Navigation: React.FC<{ userRole: UserRole, setUserRole: (r: UserRole) => v
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden bg-white border-b border-gray-200 px-4 py-4 space-y-2">
+           <Link to="/security-plans" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 font-medium">Plans</Link>
            <Link to="/coverage" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 font-medium">Coverage</Link>
            <Link to="/work-for-us" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 font-medium">Work for Us</Link>
-           <Link to="/docs" onClick={() => setIsMenuOpen(false)} className="block py-2 text-gray-700 font-medium">Planning Docs</Link>
            <button onClick={() => { handleRoleChange(UserRole.ORG_OWNER); setIsMenuOpen(false); }} className="w-full text-left py-2 text-indigo-600 font-medium">Client Login</button>
            <button onClick={() => { handleRoleChange(UserRole.OPS_ADMIN); setIsMenuOpen(false); }} className="w-full text-left py-2 text-gray-600 font-medium">Ops Login</button>
         </div>
