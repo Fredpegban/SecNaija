@@ -1,11 +1,20 @@
-<div align="center">
+# SecNaija MVP - Next.js + Supabase + Stripe
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+Compliant private security platform for estates/SMEs in Nigeria.
 
-  <h1>Built with AI Studio</h2>
+## Setup Steps
+1. **Supabase**: 
+   - Create a project.
+   - Run the SQL in `db/migrations/001_init.sql` in the SQL Editor.
+   - Enable Email Magic Link Auth.
+2. **Stripe**:
+   - Set up standard checkout.
+   - Create products/prices for the packages defined in `db/seed.ts`.
+   - Setup a Webhook endpoint pointing to `/api/stripe/webhook`.
+3. **Environment Variables**:
+   - Copy `.env.example` to `.env.local` and fill in secrets.
+4. **Deploy**:
+   - Recommended platform: Vercel.
 
-  <p>The fastest path from prompt to production with Gemini.</p>
-
-  <a href="https://aistudio.google.com/apps">Start building</a>
-
-</div>
+## Security Disclaimer
+This application is designed for private security support. It is NOT a law enforcement tool. Always coordinate with NPF and NSCDC for criminal matters.

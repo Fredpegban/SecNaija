@@ -1,0 +1,7 @@
+{
+  "name": "SecNaija MVP Portal",
+  "description": "A compliant private security platform for estates and SMEs in Nigeria, featuring rapid response dispatch, CCTV monitoring, and automated incident reporting.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
